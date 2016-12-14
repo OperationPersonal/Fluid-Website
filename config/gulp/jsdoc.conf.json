@@ -1,0 +1,12 @@
+{
+    "tags": {
+        "allowUnknownTags": true,
+        "dictionaries": ["jsdoc", "closure"]
+    },
+    "opts": {
+        "templates": "./node_modules/docdash",
+        "encoding": "utf-8",
+        "destination": "./docs/",
+        "recurse": true
+    }
+}
