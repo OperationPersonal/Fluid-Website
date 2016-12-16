@@ -1,6 +1,4 @@
-var session = require('express-session');
-var MongoStore = require('connect-mongo')(session);
-var mongoose = require('mongoose');
+var session = require( 'express-session' );
 
 var config = {
   'cookie': {
@@ -16,9 +14,6 @@ var config = {
   'rolling': false, // whether every RESPONSE resets maxAge usually only requests do this
   'saveUninitialized': false, // Passport no longer need this - it also saves space for this to be false
   'secret': process.env.SESSION_SECRET || 'strange secret huh',
-  'store': new MongoStore({ // Persistent logins :/
-    'mongooseConnection': mongoose.connection
-  }),
   'unset': 'keep' // This makes sure session doesnt get destroyed after each request
 };
 

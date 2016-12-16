@@ -42,6 +42,3 @@ function onListening() {
     'port ' + addr.port;
   debug( 'Listening on ', bind );
 }
-port;
-debug( 'Listening on ', bind );
-}
