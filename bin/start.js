@@ -1,25 +1,20 @@
-var dotenv = require('dotenv');
-dotenv.config({ path: './bin/.env' });
+var dotenv = require( 'dotenv' );
+dotenv.config( { path: './bin/.env' } );
 
-var debug = require('debug')('server:start');
-var http = require('http');
+var debug = require( 'debug' )( 'server:start' );
+var http = require( 'http' );
 
-var app = require('../app');
-var error = require('./error');
+var app = require( '../app' );
+var error = require( './error' );
 
-var socket = require('../socket');
+var port = normalizePort( process.env.PORT || 3000 );
 
-var port = normalizePort(process.env.PORT || 3000);
+app.set( 'port', port );
+var server = http.createServer( app );
 
-app.set('port', port);
-var server = http.createServer(app);
-
-var io = require('socket.io')(server);
-io.on('connection', socket(io));
-
-server.listen(port, '0.0.0.0'); // The 0s are for web hosting
-server.on('error', error(port)); // Error uses closure to generate listeners
-server.on('listening', onListening);
+server.listen( port, '0.0.0.0' ); // The 0s are for web hosting
+server.on( 'error', error( port ) ); // Error uses closure to generate listeners
+server.on( 'listening', onListening );
 
 /**
  * Turns port from int || string into its specific value,
@@ -28,10 +23,10 @@ server.on('listening', onListening);
  * @param  {String|Number} val - what the server is listening on
  * @return {String|Number} pipe or port
  */
-function normalizePort(val) {
-  var port = parseInt(val, 10);
-  if (isNaN(port)) return val;
-  if (port >= 0) return port;
+function normalizePort( val ) {
+  var port = parseInt( val, 10 );
+  if ( isNaN( port ) ) return val;
+  if ( port >= 0 ) return port;
   return false;
 }
 
@@ -45,5 +40,8 @@ function onListening() {
   var bind = typeof addr === 'string' ?
     'pipe ' + addr :
     'port ' + addr.port;
-  debug('Listening on ', bind);
+  debug( 'Listening on ', bind );
+}
+port;
+debug( 'Listening on ', bind );
 }
